@@ -1,0 +1,21 @@
+﻿@model List<WebApp.Models.DB.Role>
+
+
+    <h1>Marcas</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Rol</td>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var rol in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m=>rol.Description)</td>
+            </tr>
+        }
+        </tbody>
+
+    </table>

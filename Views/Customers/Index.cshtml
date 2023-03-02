@@ -1,0 +1,78 @@
+﻿@model IEnumerable<WebApp.Models.DB.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listado de Clientes</h1>
+
+<p>
+    <a asp-action="Create">Nuevo Cliente</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Tipo Id
+            </th>
+            <th>
+                Identificación
+            </th>
+            <th>
+                <!--ARROBAHtml.DisplayNameFor(model => model.NameCustomer ) /DA EL NOMBRE Del cambo de la bd-->
+                Nombre del Cliente
+            </th>
+            <th>
+                Apellidos del CLiente
+            </th>
+
+            <th>
+               Teléfono de Contacto
+            </th>
+            <th>
+               Dirección
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+               
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type.CodId)  <!--// como es una llava foránea, con decimos que traiga de la tabla donde está con la que se conecta el codId-->
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameCustomer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastNameCustomer)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.TelNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo)
+            </td>
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Ver más</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebApp.Models.DB.Orderscostumer>
+
+
+    <h1>Órdenes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>
+                    Orden
+                </td>
+            <td>
+                Cliente
+            </td>
+            <td>
+                Email del Cliente
+            </td>
+
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var order in Model)
+        {
+                <tr>
+                <td>
+                    @Html.DisplayFor(m=>order.IdOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(m=>order.Customer.NameCustomer) @Html.DisplayFor(n=>order.Customer.LastNameCustomer)
+                </td>
+                <td>
+                    @Html.DisplayFor(m=>order.Customer.Correo)
+                </td>
+                <td>
+                <a asp-action="Details" asp-route-id="@order.IdOrder">Editar</a>
+                </td>
+                </tr>
+                
+        }
+        </tbody>
+
+    </table>
