@@ -1,12 +1,13 @@
 ﻿@model WebApp.Models.DB.Customer
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Actualizar";
 }
 
-<h1>Edit</h1>
+<h1>Actualizar Información</h1>
 
-<h4>Customer</h4>
+
+<h4>Cliente</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,53 +15,48 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="NameCustomer" class="control-label"></label>
+                <label asp-for="NameCustomer" class="control-label">Nombre del Cliente</label>
                 <input asp-for="NameCustomer" class="form-control" />
                 <span asp-validation-for="NameCustomer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastNameCustomer" class="control-label"></label>
+                <label asp-for="LastNameCustomer" class="control-label">Apellido del Cliente</label>
                 <input asp-for="LastNameCustomer" class="form-control" />
                 <span asp-validation-for="LastNameCustomer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdNumber" class="control-label"></label>
+                <label asp-for="IdNumber" class="control-label">Identificación del Cliente</label>
                 <input asp-for="IdNumber" class="form-control" />
                 <span asp-validation-for="IdNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TelNumber" class="control-label"></label>
+                <label asp-for="TelNumber" class="control-label">Teléfono</label>
                 <input asp-for="TelNumber" class="form-control" />
                 <span asp-validation-for="TelNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
+                <label asp-for="Address" class="control-label">Dirección</label>
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Correo" class="control-label"></label>
+                <label asp-for="Correo" class="control-label">Correo</label>
                 <input asp-for="Correo" class="form-control" />
                 <span asp-validation-for="Correo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TypeIdId" class="control-label"></label>
+                <label asp-for="TypeIdId" class="control-label">Tipo Identificación</label>
                 <select asp-for="TypeIdId" class="form-control" asp-items="ViewBag.TypeIdId"></select>
                 <span asp-validation-for="TypeIdId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TypeIdCodId" class="control-label"></label>
-                <select asp-for="TypeIdCodId" class="form-control" asp-items="ViewBag.TypeIdCodId"></select>
-                <span asp-validation-for="TypeIdCodId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Regresar</a>
 </div>
 

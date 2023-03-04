@@ -13,11 +13,11 @@ public partial class Orderscostumer
 
     public string? Estado { get; set; }
 
-    public int UsersId { get; set; }
+    public int? UsersId { get; set; }
 
-    public virtual Customer Customer { get; set; } = null!;
+    public virtual Customer? Customer { get; set; } = null!;
 
     public virtual ICollection<Ordercostumersdetail> Ordercostumersdetails { get; } = new List<Ordercostumersdetail>();
 
-    public virtual User Users { get; set; } = null!;
+    public virtual User? Users { get; set; } = null!;
 }

@@ -58,7 +58,7 @@ public partial class ComercializadoraContext : DbContext
 
             entity.ToTable("customer");
 
-            entity.HasIndex(e => new { e.TypeIdId, e.TypeIdCodId }, "fk_Customer_TypeId_idx");
+            entity.HasIndex(e => e.TypeIdId, "fk_Customer_TypeId1_idx");
 
             entity.Property(e => e.Address).HasMaxLength(45);
             entity.Property(e => e.Correo).HasMaxLength(45);
@@ -66,12 +66,11 @@ public partial class ComercializadoraContext : DbContext
             entity.Property(e => e.LastNameCustomer).HasMaxLength(45);
             entity.Property(e => e.NameCustomer).HasMaxLength(45);
             entity.Property(e => e.TelNumber).HasMaxLength(45);
-            entity.Property(e => e.TypeIdCodId).HasMaxLength(3);
 
-            entity.HasOne(d => d.Type).WithMany(p => p.Customers)
-                .HasForeignKey(d => new { d.TypeIdId, d.TypeIdCodId })
+            entity.HasOne(d => d.TypeId).WithMany(p => p.Customers)
+                .HasForeignKey(d => d.TypeIdId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_Customer_TypeId");
+                .HasConstraintName("fk_Customer_TypeId1");
         });
 
         modelBuilder.Entity<Ordercostumersdetail>(entity =>
@@ -82,9 +81,10 @@ public partial class ComercializadoraContext : DbContext
 
             entity.HasIndex(e => e.OrdersCostumersIdOrder, "fk_OrderCostumersDetail_OrdersCostumers1_idx");
 
-            entity.HasIndex(e => e.ProductsIdProducts, "fk_Products_IdProducts_idx");
+            entity.HasIndex(e => e.ProductsIdProducts, "fk_OrderCostumersDetail_Products1_idx");
 
             entity.Property(e => e.Price).HasMaxLength(45);
+            entity.Property(e => e.ProductsIdProducts).HasColumnName("Products_IdProducts");
 
             entity.HasOne(d => d.OrdersCostumersIdOrderNavigation).WithMany(p => p.Ordercostumersdetails)
                 .HasForeignKey(d => d.OrdersCostumersIdOrder)
@@ -94,7 +94,7 @@ public partial class ComercializadoraContext : DbContext
             entity.HasOne(d => d.ProductsIdProductsNavigation).WithMany(p => p.Ordercostumersdetails)
                 .HasForeignKey(d => d.ProductsIdProducts)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_Products_IdProducts");
+                .HasConstraintName("fk_OrderCostumersDetail_Products1");
         });
 
         modelBuilder.Entity<Orderscostumer>(entity =>
@@ -180,7 +180,7 @@ public partial class ComercializadoraContext : DbContext
 
             entity.ToTable("provider");
 
-            entity.HasIndex(e => new { e.TypeIdId, e.TypeIdCodId }, "fk_TypeId_TypeId1_idx");
+            entity.HasIndex(e => e.TypeIdId, "fk_Provider_TypeId1_idx");
 
             entity.Property(e => e.Address).HasMaxLength(45);
             entity.Property(e => e.Correo).HasMaxLength(45);
@@ -188,12 +188,11 @@ public partial class ComercializadoraContext : DbContext
             entity.Property(e => e.LastNameProvider).HasMaxLength(45);
             entity.Property(e => e.NameProvider).HasMaxLength(45);
             entity.Property(e => e.TelNumber).HasMaxLength(45);
-            entity.Property(e => e.TypeIdCodId).HasMaxLength(3);
 
-            entity.HasOne(d => d.Type).WithMany(p => p.Providers)
-                .HasForeignKey(d => new { d.TypeIdId, d.TypeIdCodId })
+            entity.HasOne(d => d.TypeId).WithMany(p => p.Providers)
+                .HasForeignKey(d => d.TypeIdId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_TypeId_TypeId1");
+                .HasConstraintName("fk_Provider_TypeId1");
         });
 
         modelBuilder.Entity<Role>(entity =>
@@ -216,11 +215,10 @@ public partial class ComercializadoraContext : DbContext
 
         modelBuilder.Entity<Typeid>(entity =>
         {
-            entity.HasKey(e => new { e.Id, e.CodId }).HasName("PRIMARY");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity.ToTable("typeid");
 
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
             entity.Property(e => e.CodId).HasMaxLength(3);
             entity.Property(e => e.Description).HasMaxLength(45);
         });

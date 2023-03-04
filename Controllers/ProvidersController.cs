@@ -9,95 +9,90 @@ using WebApp.Models.DB;
 
 namespace WebApp.Controllers
 {
-    public class CustomersController : Controller
+    public class ProvidersController : Controller
     {
         private readonly ComercializadoraContext _context;
 
-        public CustomersController(ComercializadoraContext context)
+        public ProvidersController(ComercializadoraContext context)
         {
             _context = context;
         }
 
-        // GET: Customers
+        // GET: Providers
         public async Task<IActionResult> Index()
         {
-            var comercializadoraContext = _context.Customers.Include(c => c.TypeId);
+            var comercializadoraContext = _context.Providers.Include(p => p.TypeId);
             return View(await comercializadoraContext.ToListAsync());
         }
 
-        // GET: Customers/Details/5
+        // GET: Providers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Customers == null)
+            if (id == null || _context.Providers == null)
             {
                 return NotFound();
             }
 
-            var customer = await _context.Customers
-                .Include(c => c.TypeId)
+            var provider = await _context.Providers
+                .Include(p => p.TypeId)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (customer == null)
+            if (provider == null)
             {
                 return NotFound();
             }
 
-            return View(customer);
+            return View(provider);
         }
 
-        // GET: Customers/Create
+        // GET: Providers/Create
         public IActionResult Create()
         {
             ViewData["TypeIdId"] = new SelectList(_context.Typeids, "Id", "CodId");
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: Providers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NameCustomer,LastNameCustomer,IdNumber,TelNumber,Address,Correo,TypeIdId")] Customer customer)
+        public async Task<IActionResult> Create([Bind("Id,NameProvider,LastNameProvider,IdNumber,TelNumber,Address,Correo,TypeIdId")] Provider provider)
         {
             if (ModelState.IsValid)
             {
-               try
-                {
-                    _context.Add(customer);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-                catch(Exception ex) { Console.WriteLine(ex); }
-               
+                _context.Add(provider);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            ViewData["TypeIdId"] = new SelectList(_context.Typeids, "Id", "Id", customer.TypeIdId);
-            return View(customer);
+            ViewData["TypeIdId"] = new SelectList(_context.Typeids, "Id", "CodId", provider.TypeIdId);
+            return View(provider);
         }
 
-        // GET: Customers/Edit/5
+        // GET: Providers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Customers == null)
+            if (id == null || _context.Providers == null)
             {
                 return NotFound();
             }
 
-            var customer = await _context.Customers.FindAsync(id);
-            if (customer == null)
+            var provider = await _context.Providers.FindAsync(id);
+            if (provider == null)
             {
                 return NotFound();
             }
-            ViewData["TypeIdId"] = new SelectList(_context.Typeids, "Id", "Id", customer.TypeIdId);
-            return View(customer);
+            ViewData["TypeIdId"] = new SelectList(_context.Typeids, "Id", "CodId", provider.TypeIdId);
+            return View(provider);
         }
 
-        // POST: Customers/Edit/5
+        // POST: Providers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NameCustomer,LastNameCustomer,IdNumber,TelNumber,Address,Correo,TypeIdId")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NameProvider,LastNameProvider,IdNumber,TelNumber,Address,Correo,TypeIdId")] Provider provider)
         {
-            if (id != customer.Id)
+            if (id != provider.Id)
             {
                 return NotFound();
             }
@@ -106,12 +101,12 @@ namespace WebApp.Controllers
             {
                 try
                 {
-                    _context.Update(customer);
+                    _context.Update(provider);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CustomerExists(customer.Id))
+                    if (!ProviderExists(provider.Id))
                     {
                         return NotFound();
                     }
@@ -122,51 +117,51 @@ namespace WebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TypeIdId"] = new SelectList(_context.Typeids, "Id", "Id", customer.TypeIdId);
-            return View(customer);
+            ViewData["TypeIdId"] = new SelectList(_context.Typeids, "Id", "CodId", provider.TypeIdId);
+            return View(provider);
         }
 
-        // GET: Customers/Delete/5
+        // GET: Providers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Customers == null)
+            if (id == null || _context.Providers == null)
             {
                 return NotFound();
             }
 
-            var customer = await _context.Customers
-                .Include(c => c.TypeId)
+            var provider = await _context.Providers
+                .Include(p => p.TypeId)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (customer == null)
+            if (provider == null)
             {
                 return NotFound();
             }
 
-            return View(customer);
+            return View(provider);
         }
 
-        // POST: Customers/Delete/5
+        // POST: Providers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Customers == null)
+            if (_context.Providers == null)
             {
-                return Problem("Entity set 'ComercializadoraContext.Customers'  is null.");
+                return Problem("Entity set 'ComercializadoraContext.Providers'  is null.");
             }
-            var customer = await _context.Customers.FindAsync(id);
-            if (customer != null)
+            var provider = await _context.Providers.FindAsync(id);
+            if (provider != null)
             {
-                _context.Customers.Remove(customer);
+                _context.Providers.Remove(provider);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CustomerExists(int id)
+        private bool ProviderExists(int id)
         {
-          return _context.Customers.Any(e => e.Id == id);
+          return _context.Providers.Any(e => e.Id == id);
         }
     }
 }

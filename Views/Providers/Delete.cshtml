@@ -1,54 +1,54 @@
-﻿@model WebApp.Models.DB.Customer
+﻿@model WebApp.Models.DB.Provider
 
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h1>Eliminar</h1>
+<h1>Delete</h1>
 
-<h3>¿Está seguro de querer eliminar este cliente?</h3>
+<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Customer</h4>
+    <h4>Provider</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            Nombre del Cliente
+            @Html.DisplayNameFor(model => model.NameProvider)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NameCustomer)
+            @Html.DisplayFor(model => model.NameProvider)
         </dd>
         <dt class = "col-sm-2">
-           Apellido del Cliente
+            @Html.DisplayNameFor(model => model.LastNameProvider)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastNameCustomer)
+            @Html.DisplayFor(model => model.LastNameProvider)
         </dd>
         <dt class = "col-sm-2">
-            Identificación
+            @Html.DisplayNameFor(model => model.IdNumber)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.IdNumber)
         </dd>
         <dt class = "col-sm-2">
-            Teléfono
+            @Html.DisplayNameFor(model => model.TelNumber)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TelNumber)
         </dd>
         <dt class = "col-sm-2">
-            Dirección
+            @Html.DisplayNameFor(model => model.Address)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Address)
         </dd>
         <dt class = "col-sm-2">
-            Correo
+            @Html.DisplayNameFor(model => model.Correo)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Correo)
         </dd>
         <dt class = "col-sm-2">
-            Tipo ID
+            @Html.DisplayNameFor(model => model.TypeId)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TypeId.Id)
@@ -57,7 +57,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Borrar" class="btn btn-danger" /> |
-        <a asp-action="Index">Regresar</a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>

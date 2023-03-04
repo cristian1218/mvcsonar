@@ -1,34 +1,34 @@
-﻿@model WebApp.Models.DB.Customer
+﻿@model WebApp.Models.DB.Provider
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Añadir Proveedor";
 }
 
-<h1>Create</h1>
+<h1>Añadir Proveedor</h1>
 
-<h4>Customer</h4>
+<h4>Datos del Proveedor</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NameCustomer" class="control-label">Nombre del Cliente</label>
-                <input asp-for="NameCustomer" class="form-control" />
-                <span asp-validation-for="NameCustomer" class="text-danger"></span>
+                <label asp-for="NameProvider" class="control-label">Nombre </label>
+                <input asp-for="NameProvider" class="form-control" />
+                <span asp-validation-for="NameProvider" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastNameCustomer" class="control-label">Apellido del Cliente</label>
-                <input asp-for="LastNameCustomer" class="form-control" />
-                <span asp-validation-for="LastNameCustomer" class="text-danger"></span>
+                <label asp-for="LastNameProvider" class="control-label">Apellido </label>
+                <input asp-for="LastNameProvider" class="form-control" />
+                <span asp-validation-for="LastNameProvider" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdNumber" class="control-label">Identificación</label>
+                <label asp-for="IdNumber" class="control-label">Número de Ideinficación</label>
                 <input asp-for="IdNumber" class="form-control" />
                 <span asp-validation-for="IdNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TelNumber" class="control-label">Teléfono</label>
+                <label asp-for="TelNumber" class="control-label">Téléfono</label>
                 <input asp-for="TelNumber" class="form-control" />
                 <span asp-validation-for="TelNumber" class="text-danger"></span>
             </div>
@@ -47,13 +47,16 @@
                 <select asp-for="TypeIdId" class ="form-control" asp-items="ViewBag.TypeIdId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

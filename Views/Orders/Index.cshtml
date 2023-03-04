@@ -3,11 +3,18 @@
 
     <h1>Órdenes</h1>
 
+    <p>
+    <a asp-action="Create">Nueva Orden</a>
+    </p>
+
     <table class="table">
         <thead>
             <tr>
                 <td>
                     Orden
+                </td>
+                <td>
+                    Fecha
                 </td>
             <td>
                 Cliente
@@ -15,7 +22,9 @@
             <td>
                 Email del Cliente
             </td>
-
+            <td>
+                Estado Pedido
+            </td>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +34,9 @@
                 <td>
                     @Html.DisplayFor(m=>order.IdOrder)
                 </td>
+                 <td>
+                    @Html.DisplayFor(m=>order.Date)
+                </td>
                 <td>
                     @Html.DisplayFor(m=>order.Customer.NameCustomer) @Html.DisplayFor(n=>order.Customer.LastNameCustomer)
                 </td>
@@ -32,7 +44,10 @@
                     @Html.DisplayFor(m=>order.Customer.Correo)
                 </td>
                 <td>
-                <a asp-action="Details" asp-route-id="@order.IdOrder">Editar</a>
+                    @Html.DisplayFor(m=>order.Estado)
+                </td>
+                <td>
+                <a asp-action="Edit" asp-route-id="@order.IdOrder">Editar</a>
                 </td>
                 </tr>
                 
